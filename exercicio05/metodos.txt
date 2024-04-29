@@ -1,0 +1,173 @@
+Alunos: Alex Farias, Igor Rocha, Lucas Meller e Matheus Araldi.
+Serviço: aplicativo de música.
+
+Casos de uso:
+●	Manipular músicas individuais.
+●	Manipular playlists de músicas.
+
+Recursos:
+1.	Músicas
+2.	Playlists
+
+Endpoints
+
+Música:
+●	Inserir música (POST)
+●	Ler informações da música (GET)
+●	Modificar informações da música (PUT ou PATCH)
+●	Excluir música (DELETE)
+
+________________________________________
+
+Requisição: Inserir música
+
+POST: /musica/{musica-id}/
+{
+	"id": 9999,
+	"cantor": "Joao",
+	"ano_lancamento": 2020,
+	"nome_musica": "XYZ",
+	"genero":"rock"
+}
+
+Erros esperados: Inserir música
+●	400 Bad Request: Se os dados da música estiverem incompletos ou incorretos.
+●	409 Conflict: Se a música já existir.
+●	500 Internal Server Error: Se ocorrer algum erro no servidor durante o processo de inserção.
+
+________________________________________
+
+
+
+
+
+
+
+
+Requisição: Ler informações da música
+
+GET:  /musica/{musica-id}/
+{
+	"id": 9999,
+	"cantor": "Joao",
+	"ano_lancamento": 2020,
+	"nome_musica": "XYZ",
+	"genero":"rock"
+}
+
+Erros esperados: Ler informações da música
+●	404 Not Found: Se a música com o ID fornecido não for encontrada.
+●	500 Internal Server Error: Se ocorrer um erro no servidor ao tentar recuperar as informações.
+
+________________________________________
+
+Requisição: Modificar informações da música
+
+PUT: /musica/{musica-id}/  
+{
+	"id": 9999,
+	"cantor": "Guilherme",
+	"ano_lancamento": 2022
+}
+
+Erros esperados: Modificar informações da música
+●	400 Bad Request: Se o corpo da solicitação for inválido.
+●	404 Not Found: Se a música com o ID fornecido não existir.
+●	500 Internal Server Error: Se ocorrer um erro no servidor durante a atualização.
+
+________________________________________
+
+Requisição: Excluir música 
+
+DELETE:  /musica/{musica-id}/
+{
+	"id": 9999
+}
+
+Erros esperados: Excluir música 
+●	404 Not Found: Se a música com o ID fornecido não for encontrada.
+●	500 Internal Server Error: Se ocorrer um erro no servidor durante o processo de exclusão.
+
+________________________________________
+Playlist:
+●	Inserir playlist (POST)
+●	Ler informações da playlist (GET)
+●	Modificar informações da playlist (PUT ou PATCH)
+●	Excluir playlist (DELETE)
+
+________________________________________
+
+Requisição: Inserir playlist
+POST: /playlist/{playlist-id}/
+{
+	"id": 8888,
+	"autor": "Andre",
+	"ano_criacao": 2021,
+	"nome_playlist": "XYZ",
+	“playlist_item”: {id_music1, id_music2, id_music3... }
+}
+
+Erros esperados: Inserir playlist
+●	400 Bad Request: Se os dados da playlist estiverem incompletos ou em formato incorreto.
+●	409 Conflict: Se a playlist já existir.
+●	500 Internal Server Error: Se ocorrer algum erro no servidor durante o processo de inserção.
+
+________________________________________
+
+Requisição: Ler informações da playlist
+
+GET:  /playlist/{playlist-id}/
+{
+	"id": 8888,
+	"autor": "Andre",
+	"ano_criacao": 2021,
+	"nome_playlist": "XYZ",
+	“playlist_item”: {id_music1, id_music2, id_music3... }
+}
+
+Erros esperados: Ler informações da playlist
+●	404 Not Found: Se a playlist com o ID fornecido não for encontrada.
+●	500 Internal Server Error: Se ocorrer um erro no servidor ao tentar recuperar as informações.
+
+________________________________________
+
+
+
+Requisição: Modificar playlist
+
+PUT:  /playlist/{playlist-id}/
+{
+	"id": 8888,
+	"autor": "Andre",
+	"ano_criacao": 2022,
+“playlist_item”: {id_music4, id_music5... }
+}
+
+Erros esperados: Modificar informações da playlist
+●	400 Bad Request: Se o corpo da solicitação for inválido.
+●	404 Not Found: Se a playlist com o ID fornecido não existir.
+●	500 Internal Server Error: Se ocorrer um erro no servidor durante a atualização.
+
+________________________________________
+
+Requisição: Excluir playlist
+
+DELETE:  /playlist/{playlist-id}/ 
+{
+	"id": 8888
+}
+
+Erros esperados: Excluir playlist
+●	404 Not Found: Se a playlist com o ID fornecido não for encontrada.
+●	500 Internal Server Error: Se ocorrer um erro no servidor durante o processo de exclusão.
+
+________________________________________Requisição: Excluir músicas de uma playlist
+
+DELETE:  /playlist/{playlist-id}/{playlist_item}
+{
+	"playlist_item": {id_music2,id_music3}
+}
+
+Erros esperados: Excluir músicas de uma playlist
+●	404 Not Found: Se uma música da playlist com o ID fornecido não for encontrada.
+●	500 Internal Server Error: Se ocorrer um erro no servidor durante o processo de exclusão.
